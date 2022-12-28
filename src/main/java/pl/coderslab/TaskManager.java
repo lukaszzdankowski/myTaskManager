@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class TaskManager {
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         while (true) {
@@ -55,11 +56,11 @@ public class TaskManager {
         return taskTab;
     }
 
-    public static String[][] appendOneTask(String[][] taksTab, String line) {
-        String[][] outTab = new String[taksTab.length + 1][3];
-        for (int i = 0; i < taksTab.length; i++) {
+    public static String[][] appendOneTask(String[][] taskTab, String line) {
+        String[][] outTab = new String[taskTab.length + 1][3];
+        for (int i = 0; i < taskTab.length; i++) {
             for (int j = 0; j < 3; j++) {
-                outTab[i][j] = taksTab[i][j];
+                outTab[i][j] = taskTab[i][j];
             }
         }
         String[] oneTask = line.split(", ");
@@ -70,9 +71,9 @@ public class TaskManager {
     }
 
     public static void listTasks() {
-        String[][] taksTab = readFile();
-        for (int i = 0; i < taksTab.length; i++) {
-            System.out.println((i + 1) + " : " + taksTab[i][0] + "\t" + taksTab[i][1] + "\t" + taksTab[i][2]);
+        String[][] taskTab = readFile();
+        for (int i = 0; i < taskTab.length; i++) {
+            System.out.println((i + 1) + " : " + taskTab[i][0] + "\t" + taskTab[i][1] + "\t" + taskTab[i][2]);
         }
     }
 
