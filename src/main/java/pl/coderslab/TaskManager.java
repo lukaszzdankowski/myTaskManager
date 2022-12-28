@@ -65,7 +65,7 @@ public class TaskManager {
     public static void listTasks() {
         String[][] taksTab = readFile();
         for (int i = 0; i < taksTab.length; i++) {
-            System.out.println((i + 1) + " " + taksTab[i][0] + "\t" + taksTab[i][1] + "\t" + taksTab[i][2]);
+            System.out.println((i + 1) + " : " + taksTab[i][0] + "\t" + taksTab[i][1] + "\t" + taksTab[i][2]);
         }
     }
 
