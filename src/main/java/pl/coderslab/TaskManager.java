@@ -10,16 +10,9 @@ import java.util.Scanner;
 
 public class TaskManager {
     public static void main(String[] args) {
-        String[] optionTab = {"add", "remove", "list", "exit"};
         Scanner scan = new Scanner(System.in);
         while (true) {
-            System.out.println(ConsoleColors.BLUE + "Please select an option:"
-                    + ConsoleColors.RESET);
-            for (String s : optionTab) {
-                System.out.println(s);
-            }
-            System.out.print(ConsoleColors.GREEN + "Your option: "
-                    + ConsoleColors.RESET);
+            showOptions();
             String choice = scan.nextLine();
             if (choice.equals("exit")) {
                 System.out.println(ConsoleColors.RED + "Bye bye"
@@ -33,6 +26,17 @@ public class TaskManager {
                 removeTask();
             }
         }
+    }
+
+    public static void showOptions() {
+        String[] optionTab = {"add", "remove", "list", "exit"};
+        System.out.println(ConsoleColors.BLUE + "Please select an option:"
+                + ConsoleColors.RESET);
+        for (String s : optionTab) {
+            System.out.println(s);
+        }
+        System.out.print(ConsoleColors.GREEN + "Your option: "
+                + ConsoleColors.RESET);
     }
 
     public static String[][] readFile() {
