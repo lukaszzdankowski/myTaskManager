@@ -24,6 +24,9 @@ public class TaskManager {
                 addTask();
             } else if (choice.equals("remove")) {
                 removeTask();
+            } else {
+                System.out.println(ConsoleColors.RED + "Incorect option, try again"
+                        + ConsoleColors.RESET);
             }
         }
     }
