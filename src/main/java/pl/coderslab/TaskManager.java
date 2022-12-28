@@ -110,19 +110,42 @@ public class TaskManager {
         Scanner scan = new Scanner(System.in);
         System.out.println("Choose task to delete:");
         listTasks();
-        System.out.print("Type number of task to delete: ");
-        int choice = scan.nextInt();
         String[][] taskTab = readFile();
+        System.out.print("Type number of task to delete: ");
+        String choiceStr = scan.nextLine();
+        while (!isNumeric(choiceStr)) {
+            System.out.print("You must type a NUMBER of task to delete:");
+            choiceStr = scan.nextLine();
+        }
+        while (Integer.parseInt(choiceStr) < 1 || Integer.parseInt(choiceStr) > taskTab.length) {
+            System.out.print("You must type a NUMBER of EXISTING task to delete:");
+            choiceStr = scan.nextLine();
+        }
+        int choice = Integer.parseInt(choiceStr);
         String[][] outTab = new String[0][0];
         for (int i = 0; i < choice - 1; i++) {
             String line = taskTab[i][0] + ", " + taskTab[i][1] + ", " + taskTab[i][2];
             outTab = appendOneTask(outTab, line);
         }
+        String nameOfDeleted = taskTab[choice - 1][0];
         for (int i = choice; i < taskTab.length; i++) {
             String line = taskTab[i][0] + ", " + taskTab[i][1] + ", " + taskTab[i][2];
             outTab = appendOneTask(outTab, line);
         }
+        System.out.println("Task: \"" + nameOfDeleted + "\" succesfully deleted");
         saveFile(outTab);
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            int num = Integer.parseInt(strNum);
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+        return true;
     }
 
 
