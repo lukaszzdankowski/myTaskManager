@@ -18,7 +18,8 @@ public class TaskManager {
             for (String s : optionTab) {
                 System.out.println(s);
             }
-            System.out.print("Your option: ");
+            System.out.print(ConsoleColors.GREEN + "Your option: "
+                    + ConsoleColors.RESET);
             String choice = scan.nextLine();
             if (choice.equals("exit")) {
                 System.out.println(ConsoleColors.RED + "Bye bye"
@@ -62,8 +63,7 @@ public class TaskManager {
     }
 
     public static void listTasks() {
-        String[][] taksTab = new String[0][0];
-        taksTab = readFile();
+        String[][] taksTab = readFile();
         for (int i = 0; i < taksTab.length; i++) {
             System.out.println((i + 1) + " " + taksTab[i][0] + "\t" + taksTab[i][1] + "\t" + taksTab[i][2]);
         }
@@ -78,8 +78,7 @@ public class TaskManager {
         line += scan.nextLine() + ", ";
         System.out.print("Is your task important (true/false): ");
         line += scan.nextLine();
-        String[][] taskTab = new String[0][0];
-        taskTab = readFile();
+        String[][] taskTab = readFile();
         taskTab = appendOneTask(taskTab, line);
         saveFile(taskTab);
     }
@@ -105,8 +104,7 @@ public class TaskManager {
         listTasks();
         System.out.print("Type number of task to delete: ");
         int choice = scan.nextInt();
-        String[][] taskTab = new String[0][0];
-        taskTab = readFile();
+        String[][] taskTab = readFile();
         String[][] outTab = new String[0][0];
         for (int i = 0; i < choice - 1; i++) {
             String line = taskTab[i][0] + ", " + taskTab[i][1] + ", " + taskTab[i][2];
