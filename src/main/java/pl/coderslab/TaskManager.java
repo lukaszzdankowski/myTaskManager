@@ -1,5 +1,7 @@
 package pl.coderslab;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -113,12 +115,8 @@ public class TaskManager {
         String[][] taskTab = readFile();
         System.out.print("Type number of task to delete: ");
         String choiceStr = scan.nextLine();
-        while (!isNumeric(choiceStr)) {
-            System.out.print("You must type a NUMBER of task to delete:");
-            choiceStr = scan.nextLine();
-        }
-        while (Integer.parseInt(choiceStr) < 1 || Integer.parseInt(choiceStr) > taskTab.length) {
-            System.out.print("You must type a NUMBER of EXISTING task to delete:");
+        while(!checkInputInRange(choiceStr,1, taskTab.length)){
+            System.out.print("You must type a NUMBER OF TASK to delete: ");
             choiceStr = scan.nextLine();
         }
         int choice = Integer.parseInt(choiceStr);
@@ -136,17 +134,11 @@ public class TaskManager {
         saveFile(outTab);
     }
 
-    public static boolean isNumeric(String strNum) {
-        if (strNum == null) {
-            return false;
+    public static boolean checkInputInRange(String input, int start, int end){
+        if (NumberUtils.isParsable(input)){
+            return Integer.parseInt(input) >= start && Integer.parseInt(input) <= end;
         }
-        try {
-            int num = Integer.parseInt(strNum);
-        } catch (NumberFormatException ex) {
-            return false;
-        }
-        return true;
+        return false;
     }
-
 
 }
